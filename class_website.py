@@ -1,6 +1,6 @@
 # Author: JT Hamrick
 # design based off of http://chrisdianamedia.com/simplestore/
-import os.path
+import os.path 
 import tornado.ioloop
 import tornado.web
 from tornado.options import define, options
@@ -232,7 +232,7 @@ class SmallModule(tornado.web.UIModule):
 
 
 def main():
-    http_server = tornado.httpserver.HTTPServer(Application())
+    http_server = tornado.httpserver.HTTPServer(Application(), ssl_options={"certfile": os.path.join("certs/host.cert"), "keyfile":os.path.join("certs/host.key"), })
     http_server.listen(options.port)
     print(f"Web server started. In your browser, go to http://10.20.0.226:{options.port}")
     tornado.ioloop.IOLoop.current().start()
